@@ -7,11 +7,9 @@ extras_test = [
     "pyproj",
     "pytest",
     "pytest-cov",
-    "sphinx",
     "pytest-asyncio",
     "tox",
     "build",
-    "vcrpy",
 ]
 
 

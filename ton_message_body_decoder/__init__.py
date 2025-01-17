@@ -1,6 +1,6 @@
 from pytoniq_core.boc.deserialize import Boc
 from typing import Any
-from pytoniq_core import Cell, Slice
+from pytoniq_core import Slice
 import base64
 # Jetton op codes:
 # https://github.com/ton-blockchain/token-contract/blob/main/ft/op-codes.fc
@@ -74,9 +74,8 @@ def decode_jetton_notification(slice: Slice) -> dict[str, Any]:
         "query_id": query_id,
         "amount": amount,
         "sender": sender.to_str(is_bounceable=False) if sender else None,
-        "comment": comment
+        "comment": comment,
     }
-
 
 
 def get_decoded_message_body(boc_payload: str) -> dict:
@@ -90,7 +89,7 @@ def get_decoded_message_body(boc_payload: str) -> dict:
         op = slice.load_uint(32)
         if op == 0xF8A7EA5:  # Jetton Transfer op code
             return decode_jetton_transfer(slice)
-        elif op == 0x7362d09c:  # Jetton Notify op code
+        elif op == 0x7362D09C:  # Jetton Notify op code
             return decode_jetton_notification(slice)
     except Exception as e:
         print(f"Error decoding notification: {e}")
