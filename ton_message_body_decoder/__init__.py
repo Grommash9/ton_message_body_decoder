@@ -49,6 +49,7 @@ def decode_jetton_transfer(slice: Slice) -> dict[str, Any]:
         "has_custom_payload": has_custom_payload,
         "custom_payload": custom_payload,
         "has_forward_payload": has_forward_payload,
+        "op_code": hex(0xF8A7EA5),
     }
 
 
@@ -75,6 +76,7 @@ def decode_jetton_notification(slice: Slice) -> dict[str, Any]:
         "amount": amount,
         "sender": sender.to_str(is_bounceable=False) if sender else None,
         "comment": comment,
+        "op_code": hex(0x7362D09C),
     }
 
 
@@ -91,6 +93,8 @@ def get_decoded_message_body(boc_payload: str) -> dict:
             return decode_jetton_transfer(slice)
         elif op == 0x7362D09C:  # Jetton Notify op code
             return decode_jetton_notification(slice)
+        else:
+            return {"op_code": hex(op), "op": "unknown"}
     except Exception as e:
         print(f"Error decoding notification: {e}")
         return {}

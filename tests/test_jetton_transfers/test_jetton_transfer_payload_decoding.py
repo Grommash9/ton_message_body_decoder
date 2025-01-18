@@ -7,6 +7,7 @@ jetton_transfer2 = "te6cckEBAgEAggABrA+KfqUAAAAAAAAAADgTQdgB++pdVNAMpa4HfQzQEjBL
 def test_notifications_decoding():
     print(get_decoded_message_body(jetton_transfer2))
     assert get_decoded_message_body(jetton_transfer) == {
+        "op_code": "0xf8a7ea5",
         "op": "jetton_transfer",
         "query_id": 0,
         "amount": 1,
@@ -19,6 +20,7 @@ def test_notifications_decoding():
         "has_forward_payload": True,
     }
     assert get_decoded_message_body(jetton_transfer2) == {
+        "op_code": "0xf8a7ea5",
         "op": "jetton_transfer",
         "query_id": 0,
         "amount": 8467485,

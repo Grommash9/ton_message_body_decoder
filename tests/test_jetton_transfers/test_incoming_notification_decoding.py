@@ -7,6 +7,7 @@ incoming_aiotx_transfer_notification3 = "te6cckEBAgEAXQABYnNi0JwAAAAAAAAAADgTQdg
 
 def test_notifications_decoding():
     assert get_decoded_message_body(incoming_aiotx_transfer_notification) == {
+        "op_code": "0x7362d09c",
         "op": "jetton_notify",
         "query_id": 0,
         "amount": 1000000000,
@@ -14,6 +15,7 @@ def test_notifications_decoding():
         "comment": "testnet AIOTX transfer",
     }
     assert get_decoded_message_body(incoming_aiotx_transfer_notification2) == {
+        "op_code": "0x7362d09c",
         "op": "jetton_notify",
         "query_id": 0,
         "amount": 1000000000000,
@@ -21,6 +23,7 @@ def test_notifications_decoding():
         "comment": "testnet AIOTX yrt another transfer",
     }
     assert get_decoded_message_body(incoming_aiotx_transfer_notification3) == {
+        "op_code": "0x7362d09c",
         "op": "jetton_notify",
         "query_id": 0,
         "amount": 8467485,
